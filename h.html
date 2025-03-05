@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #f5a623, #ff7e5f);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+        h2 {
+            color: #d9534f;
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        button {
+            background-color: #d9534f;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Fire Prediction</h2>
+    
+    <label for="temperature">Temperature (°C)</label>
+    <input type="number" id="temperature" placeholder="Enter temperature">
+    <button onclick="showInput('Temperature')">Show Temperature</button>
+
+    <label for="humidity">Humidity (%)</label>
+    <input type="number" id="humidity" placeholder="Enter humidity">
+    <button onclick="showInput('Humidity')">Show Humidity</button>
+
+    <label for="oxygen">Oxygen Level (%)</label>
+    <input type="number" id="oxygen" placeholder="Enter oxygen level">
+    <button onclick="showInput('Oxygen')">Show Oxygen Level</button>
+
+    <button onclick="predictFire()">Submit</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+    function showInput(type) {
+        const temperature = document.getElementById("temperature").value;
+        const humidity = document.getElementById("humidity").value;
+        const oxygen = document.getElementById("oxygen").value;
+
+        if (type === 'Temperature' && temperature) {
+            alert(`Temperature: ${temperature}°C`);
+        } else if (type === 'Humidity' && humidity) {
+            alert(`Humidity: ${humidity}%`);
+        } else if (type === 'Oxygen' && oxygen) {
+            alert(`Oxygen Level: ${oxygen}%`);
+        } else {
+            alert(`Please enter a value for ${type}`);
+        }
+    }
+
+    function predictFire() {
+        const temperature = parseFloat(document.getElementById("temperature").value);
+        const humidity = parseFloat(document.getElementById("humidity").value);
+        const oxygen = parseFloat(document.getElementById("oxygen").value);
+
+        if (isNaN(temperature) || isNaN(humidity) || isNaN(oxygen)) {
+            document.getElementById("output").innerHTML = "<strong>Please fill in all fields with valid numbers.</strong>";
+            return;
+        }
+
+        // Fire risk logic: high temperature (>40), low humidity (<30), and high oxygen (>20) lead to high fire risk.
+        const firePrediction = (temperature > 40 && humidity < 30 && oxygen > 20) 
+            ? "Fire risk is high!" 
+            : "Fire risk is low.";
+
+        document.getElementById("output").innerHTML = `<strong>Prediction:</strong> ${firePrediction}`;
+    }
+</script>
+
+</body>
+</html>

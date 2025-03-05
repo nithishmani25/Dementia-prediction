@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dementia Dataset</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Dementia Dataset</h1>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Dementia Awareness</a></li>
+                <li><a href="prediction.html">Dementia Prediction</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Dementia Dataset</h2>
+        <button onclick="showTable()">Show Dataset</button>
+        <table id="dementiaTable" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>MMSE Score</th>
+                    <th>CDR</th>
+                    <th>APOE-e4</th>
+                    <th>Diagnosis</th>
+                    <th>Amyloid Beta</th>
+                    <th>Tau</th>
+                    <th>Brain Volume (MRI)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>72</td>
+                    <td>Female</td>
+                    <td>28</td>
+                    <td>0.5</td>
+                    <td>1</td>
+                    <td>MCI</td>
+                    <td>192</td>
+                    <td>75</td>
+                    <td>1350</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>80</td>
+                    <td>Male</td>
+                    <td>24</td>
+                    <td>1.0</td>
+                    <td>0</td>
+                    <td>Alzheimer’s</td>
+                    <td>210</td>
+                    <td>80</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>65</td>
+                    <td>Female</td>
+                    <td>26</td>
+                    <td>0.7</td>
+                    <td>1</td>
+                    <td>MCI</td>
+                    <td>180</td>
+                    <td>70</td>
+                    <td>1250</td>
+                </tr>
+                <tr>
+                    <td>004</td>
+                    <td>70</td>
+                    <td>Male</td>
+                    <td>20</td>
+                    <td>1.5</td>
+                    <td>0</td>
+                    <td>Alzheimer’s</td>
+                    <td>230</td>
+                    <td>85</td>
+                    <td>1150</td>
+                </tr>
+                <tr>
+                    <td>005</td>
+                    <td>78</td>
+                    <td>Female</td>
+                    <td>30</td>
+                    <td>0.6</td>
+                    <td>1</td>
+                    <td>MCI</td>
+                    <td>200</td>
+                    <td>76</td>
+                    <td>1300</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        function showTable() {
+            document.getElementById("dementiaTable").style.display = "table";
+        }
+    </script>
+
+    <footer>
+        <p>© 2024 Dementia Dataset. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

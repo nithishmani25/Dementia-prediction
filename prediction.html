@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dementia Prediction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Dementia Prediction System</h1>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Dementia Awareness</a></li>
+                <li><a href="dataset.html">Dementia Dataset</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Patient Prediction Results</h2>
+        
+        <!-- Patient Input Form -->
+        <div class="input-form">
+            <h3>Enter Patient Details</h3>
+            <form id="patientForm" onsubmit="processInput(event)">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required min="1" max="100"><br><br>
+                
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select><br><br>
+
+                <label for="headache">Headaches:</label>
+                <input type="checkbox" id="headache" name="headache"><br><br>
+
+                <label for="nausea">Nausea and Vomiting:</label>
+                <input type="checkbox" id="nausea" name="nausea"><br><br>
+
+                <label for="dizziness">Dizziness:</label>
+                <input type="checkbox" id="dizziness" name="dizziness"><br><br>
+
+                <label for="memory">Memory or Concentration Issues:</label>
+                <input type="checkbox" id="memory" name="memory"><br><br>
+
+                <label for="personality">Personality Changes:</label>
+                <input type="checkbox" id="personality" name="personality"><br><br>
+
+                <label for="sleep">Sleep Disturbances:</label>
+                <input type="checkbox" id="sleep" name="sleep"><br><br>
+
+                <label for="hallucinations">Hallucinations:</label>
+                <input type="checkbox" id="hallucinations" name="hallucinations"><br><br>
+
+                <label for="restlessness">Restlessness:</label>
+                <input type="checkbox" id="restlessness" name="restlessness"><br><br>
+
+                <label for="mobility">Loss of Mobility:</label>
+                <input type="checkbox" id="mobility" name="mobility"><br><br>
+                
+                <button type="submit">Predict Dementia Risk</button>
+            </form>
+        </div>
+        
+        <div id="manualPrediction" class="predictionDetail" style="display:none;">
+            <h3>Manual Prediction Result</h3>
+            <p><strong>Age:</strong> <span id="resultAge"></span></p>
+            <p><strong>Gender:</strong> <span id="resultGender"></span></p>
+            <p><strong>Symptoms:</strong>
+                <ul>
+                    <li><span id="resultHeadache"></span></li>
+                    <li><span id="resultNausea"></span></li>
+                    <li><span id="resultDizziness"></span></li>
+                    <li><span id="resultMemory"></span></li>
+                    <li><span id="resultPersonality"></span></li>
+                    <li><span id="resultSleep"></span></li>
+                    <li><span id="resultHallucinations"></span></li>
+                    <li><span id="resultRestlessness"></span></li>
+                    <li><span id="resultMobility"></span></li>
+                </ul>
+            </p>
+            <p><strong>Predicted Likelihood of Dementia:</strong> <span id="resultLikelihood"></span></p>
+            <p><strong>Diagnosis:</strong> <span id="resultDiagnosis"></span></p>
+        </div>
+    </section>
+
+    <script>
+        function showPatientPrediction(patientId) {
+            var patientDetail = document.getElementById(patientId);
+            patientDetail.style.display = patientDetail.style.display === "none" ? "block" : "none";
+        }
+
+        function processInput(event) {
+            event.preventDefault();
+            
+            // Get values from the form
+            const age = document.getElementById("age").value;
+            const gender = document.getElementById("gender").value;
+            const headache = document.getElementById("headache").checked ? "Headaches" : "";
+            const nausea = document.getElementById("nausea").checked ? "Nausea and Vomiting" : "";
+            const dizziness = document.getElementById("dizziness").checked ? "Dizziness" : "";
+            const memory = document.getElementById("memory").checked ? "Memory or Concentration Issues" : "";
+            const personality = document.getElementById("personality").checked ? "Personality Changes" : "";
+            const sleep = document.getElementById("sleep").checked ? "Sleep Disturbances" : "";
+            const hallucinations = document.getElementById("hallucinations").checked ? "Hallucinations" : "";
+            const restlessness = document.getElementById("restlessness").checked ? "Restlessness" : "";
+            const mobility = document.getElementById("mobility").checked ? "Loss of Mobility" : "";
+            
+            // Set conditions for likelihood and diagnosis
+            let likelihood, diagnosis;
+            if (age > 70 || (headache && nausea && dizziness && memory && personality && sleep && hallucinations && restlessness && mobility)) {
+                likelihood = "90%";
+                diagnosis = "Likely to develop dementia in the next 2-3 years";
+            } else {
+                likelihood = "45%";
+                diagnosis = "No immediate risk detected";
+            }
+
+            // Display results
+            document.getElementById("resultAge").innerText = age;
+            document.getElementById("resultGender").innerText = gender;
+            document.getElementById("resultHeadache").innerText = headache;
+            document.getElementById("resultNausea").innerText = nausea;
+            document.getElementById("resultDizziness").innerText = dizziness;
+            document.getElementById("resultMemory").innerText = memory;
+            document.getElementById("resultPersonality").innerText = personality;
+            document.getElementById("resultSleep").innerText = sleep;
+            document.getElementById("resultHallucinations").innerText = hallucinations;
+            document.getElementById("resultRestlessness").innerText = restlessness;
+            document.getElementById("resultMobility").innerText = mobility;
+            document.getElementById("resultLikelihood").innerText = likelihood;
+            document.getElementById("resultDiagnosis").innerText = diagnosis;
+
+            document.getElementById("manualPrediction").style.display = "block";
+        }
+    </script>
+</body>
+</html>
